@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            overflow-x: hidden; /* Disable horizontal scrolling */
+        }
+        .container {
+            max-width: 100%;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input[type="text"] {
+            width: calc(100% - 20px); /* Adjusted for padding */
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"], button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover, button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+footer {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+footer a.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+footer a.button:hover {
+    background-color: #555;
+}
+header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+
+
+    </style>
+</head>
+<body>
+<header>
+        <h1> </h1>
+    </header>
+    <div class="container">
+        <h2>URL Shortener</h2>
+        <form id="urlShortenerForm">
+            <input type="text" id="originalUrl" placeholder="Enter URL to shorten" required>
+            <input type="text" id="customAlias" placeholder="Custom Alias (optional)">
+            <input type="submit" value="Shorten">
+        </form>
+        <div id="shortenedUrl"></div>
+        <div id="error" class="error"></div>
+        <button id="copyButton" style="display: none;">Copy URL</button>
+    </div>
+
+    <script>
+        document.getElementById("urlShortenerForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            shortenUrl(document.getElementById("originalUrl").value, document.getElementById("customAlias").value);
+        });
+
+        function shortenUrl(originalUrl, customAlias) {
+            let apiUrl = 'https://tinyurl.com/api-create.php?url=' + encodeURIComponent(originalUrl);
+            if (customAlias) {
+                apiUrl += '&alias=' + encodeURIComponent(customAlias);
+            }
+            // Adding referral details
+            apiUrl += '?utm_source=ashish-url-shortner&utm_medium=com.ashishapps.url&utm_campaign=Ashish+Url+Shortner';
+
+            fetch(apiUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Alias not available');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    document.getElementById("shortenedUrl").innerHTML = `<p>Shortened URL: <a href="${data}" target="_blank">${data}</a></p>`;
+                    document.getElementById("error").innerHTML = '';
+                    document.getElementById("copyButton").style.display = "block";
+                    document.getElementById("copyButton").addEventListener("click", function() {
+                        copyToClipboard(data);
+                    });
+                })
+                .catch(error => {
+                    document.getElementById("error").innerHTML = error.message;
+                    console.error('Error:', error);
+                });
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text)
+                .then(() => alert("URL copied to clipboard"))
+                .catch(err => console.error('Error in copying: ', err));
+        }
+    </script>
+</body>
+</html>
+
+<footer>
+    
+    <a href="https://ashish-apps.blogspot.com?utm_source=footer&utm_medium=url-app" target="_blank" class="button">Made by Ashish Apps</a>
+</footer>
+
