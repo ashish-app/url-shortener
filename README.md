@@ -12,7 +12,7 @@ This is a simple URL shortener project that allows users to shorten long URLs in
   ## Accessing the URL Shortener
 To use the URL shortener service, you can download the Android application from either of the following sources:
 
-1. **Amazon App Store:** Visit the [Amazon App Store](https://www.amazon.com/gp/product/B0CW18MGX4) and search for "URL Shortener" to download and install the application on your Android device.
+1. **Amazon App Store:** Visit the [Amazon App Store](https://www.amazon.com/gp/product/B0CW18MGX4) to download and install the application on your Android device.
 
 2. **Direct Download:** Alternatively, you can download the APK directly from our website. Visit website(https://ashish-apps.blogspot.com) to download the latest version of the APK file.
 
@@ -24,11 +24,7 @@ Please note that you might need to enable installation from unknown sources on y
 - Programming Language: Html, Css, Java
 - Database: Tinyurl.com
 
-## Getting Started
-1. Clone this repository to your local machine.
-2. [Additional setup instructions, e.g., installing dependencies, configuring the database, etc.]
-3. Run the application locally.
-4. Access the application in your web browser.
+
 
 
 
@@ -46,7 +42,7 @@ This project is licensed under the [Creative Commons Attribution-NonCommercial-N
   
 Under the following terms:
 - **Attribution** — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
-- **NonCommercial** — You may not use the material for commercial purposes.
+- **NonCommercial** — You may not use the material for commercial purposes without permission.
 - **NoDerivatives** — If you remix, transform, or build upon the material, you may not distribute the modified material.
 
 
